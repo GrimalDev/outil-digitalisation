@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 
 interface QuestionProps {
   text: string;
+  onScoreChange: (score: number) => void;
 }
 
-const Question: React.FC<QuestionProps> = ({ text }) => {
-  const [score, setScore] = useState<string>('0');
+const Question: React.FC<QuestionProps> = ({ text, onScoreChange }) => {
+  const [score, setScore] = useState<number>(0);
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setScore(event.target.value);
+    const newScore = parseInt(event.target.value, 10);
+    setScore(newScore);
+    onScoreChange(newScore);
   };
 
   return (
