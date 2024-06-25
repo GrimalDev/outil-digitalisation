@@ -8,8 +8,17 @@
 </head>
 <body class="bg-gray-100 min-h-screen flex items-center justify-center">
     <div class="max-w-3xl w-full bg-white shadow-md rounded-lg p-6">
+        
         <h1 class="text-3xl font-bold mb-6 text-center">Évaluation des Pratiques de l'Entreprise</h1>
 
+        <span class="text-sm">
+            Saisir le nom de l'entreprise à évaluer
+          </span>
+        <!-- Nom entreprise  -->
+            <div class="flex justify-center">
+                <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 mx-auto my-4" id="inline-full-name" type="text" value="" placeholder="Cesi">
+            </div>
+  
         <!-- Section: Excellence Technique/Communauté de pratiques -->
         <div class="mb-8">
             <div class="bg-gray-200 py-2 px-4 mb-4 flex justify-between items-center rounded">
@@ -21,6 +30,7 @@
                 <div class="flex-1">Formations pour Apprendre à apprendre, changement de paradigme, "être à la page" (au-delà des compétences "justes" nécessaires)</div>
                 <div class="w-12 text-center">
                     <select name="note" id="note-select">
+                        
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
