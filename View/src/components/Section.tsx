@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Question from './Question';
 
 interface SectionProps {
   title: string;
   questions: string[];
+  onSectionScoreChange: (score: number) => void;
 }
 
-const Section: React.FC<SectionProps> = ({ title, questions }) => {
+const Section: React.FC<SectionProps> = ({ title, questions, onSectionScoreChange }) => {
   const [scores, setScores] = useState<number[]>(Array(questions.length).fill(0));
 
   const handleScoreChange = (index: number, score: number) => {
@@ -17,6 +18,10 @@ const Section: React.FC<SectionProps> = ({ title, questions }) => {
 
   const totalScore = scores.reduce((total, score) => total + score, 0);
   const averageScore = (totalScore / (scores.length * 2)) * 10;
+
+  useEffect(() => {
+    onSectionScoreChange(totalScore);
+  }, [totalScore, onSectionScoreChange]);
 
   return (
     <div className="mb-8">
