@@ -27,8 +27,8 @@ const Form: React.FC<FormProps> = ({ axes, companyName }) => {
   };
   
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-6">Évaluation pour {companyName}</h2>
+    <div className="p-8 bg-gray-50 rounded-lg shadow-md">
+      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Évaluation pour {companyName}</h2>
 
       {axes.map((axis, axisIndex) => {
         const axisTotalScore = axisScores[axisIndex].reduce((total, score) => total + score, 0);
@@ -37,9 +37,9 @@ const Form: React.FC<FormProps> = ({ axes, companyName }) => {
 
         return (
           <div key={axisIndex} className="mb-8">
-            <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-bold mb-4">{axis.name}</h2>
-              <div className="text-xl font-semibold mb-4">
+            <div className="flex justify-between items-center bg-blue-100 p-4 rounded-lg shadow-sm">
+              <h3 className="text-xl font-semibold text-blue-700">{axis.name}</h3>
+              <div className="text-xl font-semibold text-blue-700">
                 Score de l'axe : {axisAverageScore.toFixed(1)}
               </div>
             </div>
