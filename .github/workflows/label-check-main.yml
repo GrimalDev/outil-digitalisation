@@ -1,0 +1,20 @@
+name: "🏷️ Label Version for PRs on main"
+ 
+on: 
+  pull_request:
+    branches:
+      - 'main'
+    types: [edited, opened, synchronize, reopened]
+    
+    
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Labels not added (version)
+      if: |
+        contains(github.event.pull_request.labels.*.name, 'version') == false &&
+        contains(github.event.pull_request.labels.*.name, 'version-fix') == false
+      run: exit 1
+      
