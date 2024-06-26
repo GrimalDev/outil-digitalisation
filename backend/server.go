@@ -12,6 +12,8 @@ func main() {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
+
+
 	// Start server
 	e.Logger.Fatal(e.Start(":8080"))
 }
