@@ -19,11 +19,23 @@ interface FormProps {
 
 const Form: React.FC<FormProps> = ({ axes, companyName }) => {
   const [axisScores, setAxisScores] = useState<number[][][]>(axes.map(axis => axis.sections.map(() => Array(0))));
+  const [openAxes, setOpenAxes] = useState<boolean[]>(axes.map(() => false));
+  const [hasScores, setHasScores] = useState<boolean>(false);
 
   const handleSectionScoreChange = (axisIndex: number, sectionIndex: number, scores: number[]) => {
     const newAxisScores = [...axisScores];
     newAxisScores[axisIndex][sectionIndex] = scores;
     setAxisScores(newAxisScores);
+
+    // Check if there are any scores entered
+    const anyScoresEntered = newAxisScores.flat(2).some(score => score > 0);
+    setHasScores(anyScoresEntered);
+  };
+
+  const toggleAxis = (index: number) => {
+    const newOpenAxes = [...openAxes];
+    newOpenAxes[index] = !newOpenAxes[index];
+    setOpenAxes(newOpenAxes);
   };
 
   const generateJSON = () => {
@@ -71,28 +83,37 @@ const Form: React.FC<FormProps> = ({ axes, companyName }) => {
         const axisAverageScore = (axisTotalScore / axisMaxScore) * 5;
 
         return (
-          <div key={axisIndex} className="mb-8">
-            <div className="flex justify-between items-center bg-blue-100 p-4 rounded-lg shadow-sm">
+          <div key={axisIndex} className="mb-4">
+            <div 
+              className="flex justify-between items-center bg-blue-100 p-4 rounded-lg shadow-sm cursor-pointer" 
+              onClick={() => toggleAxis(axisIndex)}
+            >
               <h3 className="text-xl font-semibold text-blue-700">{axis.name}</h3>
               <div className="text-xl font-semibold text-blue-700">
                 Score de l'axe : {axisAverageScore.toFixed(1)}
               </div>
+              <span className="text-sm text-blue-500 ml-4">{openAxes[axisIndex] ? 'Réduire' : 'Dérouler'}</span>
             </div>
-            {axis.sections.map((section, sectionIndex) => (
-              <Section
-                key={sectionIndex}
-                title={section.title}
-                questions={section.questions}
-                onSectionScoreChange={(scores) => handleSectionScoreChange(axisIndex, sectionIndex, scores)}
-              />
-            ))}
+            {openAxes[axisIndex] && (
+              <div className="mt-4">
+                {axis.sections.map((section, sectionIndex) => (
+                  <Section
+                    key={sectionIndex}
+                    title={section.title}
+                    questions={section.questions}
+                    onSectionScoreChange={(scores) => handleSectionScoreChange(axisIndex, sectionIndex, scores)}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         );
       })}
 
       <button
         onClick={generateJSON}
-        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4"
+        className={`bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4 ${!hasScores ? 'opacity-50 cursor-not-allowed' : ''}`}
+        disabled={!hasScores}
       >
         Télécharger JSON
       </button>
