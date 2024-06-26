@@ -1,3 +1,4 @@
+// src/components/Section.tsx
 import React, { useState, useEffect } from 'react';
 import Question from './Question';
 
@@ -25,8 +26,8 @@ const Section: React.FC<SectionProps> = ({ title, questions, onSectionScoreChang
 
   return (
     <div className="mb-8">
-      <div className="bg-gray-200 py-2 px-4 mb-4 flex justify-between items-center rounded">
-        <div className="text-xl font-semibold mb-4 flex-1">{title}</div>
+      <div className="bg-gray-200 py-2 px-4 mb-4 flex justify-between items-center rounded shadow-md">
+        <div className="text-lg font-semibold text-gray-800">{title}</div>
         <div className="w-12 text-center text-gray-700 font-semibold">Score</div>
         <div className="w-12 text-center text-gray-700 font-semibold">{averageScore.toFixed(1)}</div>
       </div>

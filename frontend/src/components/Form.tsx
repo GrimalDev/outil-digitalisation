@@ -1,3 +1,4 @@
+// src/components/Form.tsx
 import React, { useState } from 'react';
 import Section from './Section';
 
@@ -13,15 +14,11 @@ interface AxisProps {
 
 interface FormProps {
   axes: AxisProps[];
+  companyName: string;
 }
 
-const Form: React.FC<FormProps> = ({ axes }) => {
-  const [companyName, setCompanyName] = useState<string>('');
+const Form: React.FC<FormProps> = ({ axes, companyName }) => {
   const [axisScores, setAxisScores] = useState<number[][]>(axes.map(() => []));
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCompanyName(event.target.value);
-  };
 
   const handleSectionScoreChange = (axisIndex: number, sectionIndex: number, score: number) => {
     const newAxisScores = [...axisScores];
@@ -30,19 +27,8 @@ const Form: React.FC<FormProps> = ({ axes }) => {
   };
   
   return (
-    <div>
-      <span className="text-sm">
-        Saisir le nom de l'entreprise à évaluer
-      </span>
-      <div className="flex justify-center">
-        <input
-          className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 mx-auto my-4"
-          type="text"
-          value={companyName}
-          onChange={handleInputChange}
-          placeholder="Cesi"
-        />
-      </div>
+    <div className="p-8 bg-gray-50 rounded-lg shadow-md">
+      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Évaluation pour {companyName}</h2>
 
       {axes.map((axis, axisIndex) => {
         const axisTotalScore = axisScores[axisIndex].reduce((total, score) => total + score, 0);
@@ -51,9 +37,9 @@ const Form: React.FC<FormProps> = ({ axes }) => {
 
         return (
           <div key={axisIndex} className="mb-8">
-            <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-bold mb-4">{axis.name}</h2>
-              <div className="text-xl font-semibold mb-4">
+            <div className="flex justify-between items-center bg-blue-100 p-4 rounded-lg shadow-sm">
+              <h3 className="text-xl font-semibold text-blue-700">{axis.name}</h3>
+              <div className="text-xl font-semibold text-blue-700">
                 Score de l'axe : {axisAverageScore.toFixed(1)}
               </div>
             </div>
