@@ -28,7 +28,7 @@ const Form: React.FC<FormProps> = ({ axes }) => {
     newAxisScores[axisIndex][sectionIndex] = score;
     setAxisScores(newAxisScores);
   };
-
+  
   return (
     <div>
       <span className="text-sm">
