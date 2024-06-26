@@ -18,20 +18,55 @@ interface FormProps {
 }
 
 const Form: React.FC<FormProps> = ({ axes, companyName }) => {
-  const [axisScores, setAxisScores] = useState<number[][]>(axes.map(() => []));
+  const [axisScores, setAxisScores] = useState<number[][][]>(axes.map(axis => axis.sections.map(() => Array(0))));
 
-  const handleSectionScoreChange = (axisIndex: number, sectionIndex: number, score: number) => {
+  const handleSectionScoreChange = (axisIndex: number, sectionIndex: number, scores: number[]) => {
     const newAxisScores = [...axisScores];
-    newAxisScores[axisIndex][sectionIndex] = score;
+    newAxisScores[axisIndex][sectionIndex] = scores;
     setAxisScores(newAxisScores);
   };
-  
+
+  const generateJSON = () => {
+    const data = {
+      companyName: companyName,
+      axes: axes.map((axis, axisIndex) => {
+        const sections = axis.sections.map((section, sectionIndex) => {
+          const sectionScores = axisScores[axisIndex][sectionIndex] || [];
+          const questions = section.questions.map((question, questionIndex) => ({
+            text: question,
+            score: sectionScores[questionIndex] || 0,
+          }));
+          return {
+            title: section.title,
+            questions: questions,
+            sectionTotalScore: sectionScores.reduce((total, score) => total + score, 0),
+          };
+        });
+        return {
+          name: axis.name,
+          sections: sections,
+          axisTotalScore: sections.reduce((total, section) => total + section.sectionTotalScore, 0),
+        };
+      }),
+    };
+
+    const json = JSON.stringify(data, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'evaluation.json';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="p-8 bg-gray-50 rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Évaluation pour {companyName}</h2>
 
       {axes.map((axis, axisIndex) => {
-        const axisTotalScore = axisScores[axisIndex].reduce((total, score) => total + score, 0);
+        const axisTotalScore = axisScores[axisIndex].flat().reduce((total, score) => total + score, 0);
         const axisMaxScore = axis.sections.reduce((total, section) => total + section.questions.length * 2, 0);
         const axisAverageScore = (axisTotalScore / axisMaxScore) * 5;
 
@@ -48,12 +83,19 @@ const Form: React.FC<FormProps> = ({ axes, companyName }) => {
                 key={sectionIndex}
                 title={section.title}
                 questions={section.questions}
-                onSectionScoreChange={(score) => handleSectionScoreChange(axisIndex, sectionIndex, score)}
+                onSectionScoreChange={(scores) => handleSectionScoreChange(axisIndex, sectionIndex, scores)}
               />
             ))}
           </div>
         );
       })}
+
+      <button
+        onClick={generateJSON}
+        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4"
+      >
+        Télécharger JSON
+      </button>
     </div>
   );
 };
