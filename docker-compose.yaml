@@ -1,25 +1,27 @@
 services:
-    httpd:
-        image: httpd:2.4
-        container_name: apache
-        ports:
-            - 8080:80
-        volumes:
-            - '.:/usr/local/apache2/htdocs/'
-        networks:
+    front-end: 
+        image: node:latest
+        container_name: front-end
+        working_dir: /usr/src/app
+        networks: 
             - cesi_network
-    db:
-        image: mysql:latest
-        container_name: mysql
+        volumes: 
+            - ./frontend:/usr/src/app
+        ports: 
+            - "5173:3000"
+        command: sh -c "npm install && npm start"
         environment:
-            MYSQL_DATABASE: 'db'
-            MYSQL_USER: 'cesi'
-            MYSQL_PASSWORD: 'cesi'
-            MYSQL_ROOT_PASSWORD: 'cesi_root'
+            - NODE_ENV=development
+    mongodb:
+        image: mongo:latest
+        container_name: mongodb
         ports:
-            - 3306:3306
+            - "27017:27017"
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: cesi
         volumes:
-            - 'db_cesi:/var/lib/mysql/'
+            - db_cesi:/data/db
         networks:
             - cesi_network
 volumes:

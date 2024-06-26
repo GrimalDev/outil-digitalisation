@@ -1,0 +1,110 @@
+{
+    "axes": [
+      {
+        "name": "Compétences",
+        "sections": [
+          {
+            "title": "Excellence Technique/Communauté de pratiques",
+            "questions": [
+              "Formations pour Apprendre à apprendre, changement de paradigme, \"être à la page\" (au-delà des compétences \"justes\" nécessaires)",
+              "Le co-développement (outil d'intelligence collective) existe-t-il dans l'entreprise ?",
+              "Les collaborateurs sont-ils amenés à partager leurs compétences et sous quelles formes ?",
+              "Le mentoring (fonctionnement en binôme) existe-t-il pour assurer le transfert de compétences ?",
+              "Les managers sont-ils aussi formateurs sur certains sujets pour l'entreprise entière ?",
+              "L'entreprise favorise-t-elle l'excellence technique ? (Principe 9 du Manifeste Agile)"
+            ]
+          },
+          {
+            "title": "Faire agile",
+            "questions": [
+              "Déployez-vous les pratiques du \"Faire Agile\", c'est-à-dire une ou plusieurs des \"méthodes\" agiles ?",
+              "Votre entreprise promeut-elle un \"état d'esprit agile\" ?"
+            ]
+          },
+          {
+            "title": "Gestion humaine des compétences",
+            "questions": [
+              "Votre entreprise gère-t-elle humainement les compétences ?"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Réactivité",
+        "sections": [
+          {
+            "title": "Vélocité de réponse",
+            "questions": [
+              "Valeur supérieure utilisable livrée plus tôt (Fonction principale utilisable dès les premières versions)",
+              "Réactivité face aux impératifs prépondérants",
+              "Mesure de la vélocité de l'équipe (indicateur de suivi du travail d'une équipe de conception)"
+            ]
+          },
+          {
+            "title": "Environnements souples",
+            "questions": [
+              "Les installations techniques et de gestion sont modernes (TIC/ERP/CRM)",
+              "Les équipes sont en capacité d'autonomiser une partie de leurs tâches",
+              "Les équipes s’inscrivent dans un cadre Agile Lean",
+              "Les mécanismes de livraison et de synchronisation sont matures"
+            ]
+          },
+          {
+            "title": "Défi environnemental",
+            "questions": [
+              "Les innovations produit tiennent compte de l'urgence climatique",
+              "Les processus internes sont remis en cause pour diminuer leur impact environnemental",
+              "Les parties prenantes sont sélectionnées en fonction de leur éthique vis-à-vis du développement durable"
+            ]
+          },
+          {
+            "title": "Veille et benchmark",
+            "questions": [
+              "Veille stratégique"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Numérique",
+        "sections": [
+          {
+            "title": "Business model",
+            "questions": [
+              "Votre entreprise dégage-t-elle une part de CA par des produits ou services en ligne ?",
+              "La mise en place d’outils numériques a-t-elle permis d'optimiser les coûts, les délais et la qualité ?",
+              "Comment les outils sont-ils intégrés dans les process de l’entreprise ?",
+              "Comment partagez-vous les données numériques avec les parties prenantes (clients, fournisseurs,…) ?",
+              "Mesurez-vous les impacts du numérique sur votre entreprise ?",
+              "Quel est l’impact du numérique sur la démarche RSE de l’entreprise ?",
+              "Existe-t-il des freins (stratégiques, financiers,…) à l’investissement dans les outils numériques ?"
+            ]
+          },
+          {
+            "title": "Relation client",
+            "questions": [
+              "L’entreprise dispose-t-elle : d’un site internet, d’un compte LinkedIn, d’une page Facebook, d’un compte Twitter,... ?",
+              "Comment utilisez-vous le numérique dans la relation client ? (nouveau modèle de vente, nouveau modèle d’échanges avec les clients, communauté, story, chat,...)",
+              "L’entreprise dispose-t-elle d’un community manager ?",
+              "Certains de vos collaborateurs sont-ils actifs sur les réseaux sociaux au nom de l’entreprise ?",
+              "Comment mesurez-vous et exploitez-vous les données issues du site de votre entreprise ?",
+              "Avez-vous observé chez vos concurrents des pratiques innovantes ?"
+            ]
+          },
+          {
+            "title": "Management",
+            "questions": [
+              "Vos collaborateurs sont-ils équipés de nouveaux équipements numériques de travail (PC portable, tablette, smartphone,…) ?",
+              "L’arrivée des outils digitaux a-t-elle eu un impact sur les pratiques et la culture de l’entreprise ?",
+              "Comment vous êtes-vous approprié et comment avez-vous accompagné ces évolutions?",
+              "Les nouvelles possibilités technologiques ont-elles fait évoluer le modèle d’organisation de l’entreprise et/ou votre management, vers plus de collaboration avec des acteurs internes ou externes ?",
+              "Mobilisez-vous des outils de veille et mettez-vous en œuvre des modalités de curation et de partage de l’information ?",
+              "Les fonctionnalités des outils sont-elles augmentées par la pratique de vos collaborateurs ?",
+              "Comment accompagnez-vous vos collaborateurs dans la transition numérique ?"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  
