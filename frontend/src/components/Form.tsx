@@ -25,7 +25,7 @@ const Form: React.FC<FormProps> = ({ axes, companyName }) => {
     newAxisScores[axisIndex][sectionIndex] = score;
     setAxisScores(newAxisScores);
   };
-
+  
   return (
     <div className="p-8 bg-gray-50 rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Évaluation pour {companyName}</h2>
