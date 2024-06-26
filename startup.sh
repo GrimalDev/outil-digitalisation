@@ -7,4 +7,6 @@ if [ ! -d "./database" ]; then
   mkdir database
 fi
 
+chmod -R 777 database
+
 docker compose up -d --build
