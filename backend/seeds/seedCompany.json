@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Witt group france",
+    "sector": "vente",
+    "number_of_employees": 65000,
+    "location": "france",
+    "governance": "gouvernance",
+    "centralized": "centralise",
+    "clientele": "ager",
+    "project": "projet bien"
+  },
+  {
+    "name": "Alcatel",
+    "sector": "vente",
+    "number_of_employees": 3000,
+    "location": "france",
+    "governance": "gouvernance",
+    "centralized": "centralise",
+    "clientele": "ager",
+    "project": "projet bien"
+  },
+  {
+    "name": "Synovo",
+    "sector": "vente",
+    "number_of_employees": 90,
+    "location": "france",
+    "governance": "gouvernance",
+    "centralized": "centralise",
+    "clientele": "ager",
+    "project": "projet bien"
+  },
+  {
+    "name": "actimage",
+    "sector": "vente",
+    "number_of_employees": 49,
+    "location": "france",
+    "governance": "gouvernance",
+    "centralized": "centralise",
+    "clientele": "ager",
+    "project": "projet bien"
+  },
+  {
+    "name": "Atheo ingenierie",
+    "sector": "vente",
+    "number_of_employees": 130,
+    "location": "france",
+    "governance": "gouvernance",
+    "centralized": "centralise",
+    "clientele": "ager",
+    "project": "projet bien"
+  }
+]
