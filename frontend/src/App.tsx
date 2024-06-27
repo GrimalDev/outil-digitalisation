@@ -1,4 +1,3 @@
-// src/App.tsx
 import React, { useState } from 'react';
 import Form from './components/Form';
 import questions from './res/questions.json';
@@ -17,16 +16,15 @@ const App: React.FC = () => {
     <div className="App">
       <Header/>
       {companyName ? (
-        <div className="bg-gray-100 min-h-screen flex items-center justify-center">
-          <div className="max-w-3xl w-full bg-white shadow-md rounded-lg p-6">
+        <div className="bg-white min-h-screen flex flex-col items-center justify-center">
+          <div className="max-w-3xl w-full bg-white rounded-lg p-6">
             <Form axes={questions.axes} companyName={companyName} />
           </div>
         </div>
       ) : (
         <CompanyForm onSubmit={handleCompanySubmit} />
       )}
-
-      <Footer/>
+      <Footer/> 
     </div>
   );
 };

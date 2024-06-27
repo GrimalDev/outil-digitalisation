@@ -1,4 +1,3 @@
-// src/components/Section.tsx
 import React, { useState, useEffect } from 'react';
 import Question from './Question';
 

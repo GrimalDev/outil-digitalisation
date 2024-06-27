@@ -1,4 +1,3 @@
-// src/components/SelectEntreprise.tsx
 import React, { useState } from 'react';
 
 interface CompanyFormProps {

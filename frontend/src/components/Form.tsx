@@ -1,6 +1,6 @@
-// src/components/Form.tsx
 import React, { useState } from 'react';
 import Section from './Section';
+import Footer from './Footer';
 
 interface SectionProps {
   title: string;
@@ -19,7 +19,7 @@ interface FormProps {
 
 const Form: React.FC<FormProps> = ({ axes, companyName }) => {
   const [axisScores, setAxisScores] = useState<number[][][]>(axes.map(axis => axis.sections.map(() => Array(0))));
-  const [openAxes, setOpenAxes] = useState<boolean[]>(axes.map(() => false));
+  const [activeTab, setActiveTab] = useState<number>(0);
   const [hasScores, setHasScores] = useState<boolean>(false);
 
   const handleSectionScoreChange = (axisIndex: number, sectionIndex: number, scores: number[]) => {
@@ -30,12 +30,6 @@ const Form: React.FC<FormProps> = ({ axes, companyName }) => {
     // Check if there are any scores entered
     const anyScoresEntered = newAxisScores.flat(2).some(score => score > 0);
     setHasScores(anyScoresEntered);
-  };
-
-  const toggleAxis = (index: number) => {
-    const newOpenAxes = [...openAxes];
-    newOpenAxes[index] = !newOpenAxes[index];
-    setOpenAxes(newOpenAxes);
   };
 
   const generateJSON = () => {
@@ -75,40 +69,34 @@ const Form: React.FC<FormProps> = ({ axes, companyName }) => {
 
   return (
     <div className="p-8 bg-gray-50 rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Évaluation pour {companyName}</h2>
+      <h2 className="text-3xl font-bold mb-6 text-center text-gray-800 border-b-4 border-blue-600 pb-2">
+        Évaluation pour {companyName}
+      </h2>
 
-      {axes.map((axis, axisIndex) => {
-        const axisTotalScore = axisScores[axisIndex].flat().reduce((total, score) => total + score, 0);
-        const axisMaxScore = axis.sections.reduce((total, section) => total + section.questions.length * 2, 0);
-        const axisAverageScore = (axisTotalScore / axisMaxScore) * 5;
+      <div className="mb-4 flex justify-center">
+        {axes.map((axis, index) => (
+          <button
+            key={index}
+            className={`px-4 py-2 mx-2 rounded-lg focus:outline-none ${activeTab === index ? 'bg-blue-600 text-white' : 'bg-blue-100 text-blue-600'}`}
+            onClick={() => setActiveTab(index)}
+          >
+            {axis.name}
+          </button>
+        ))}
+      </div>
 
-        return (
-          <div key={axisIndex} className="mb-4">
-            <div 
-              className="flex justify-between items-center bg-blue-100 p-4 rounded-lg shadow-sm cursor-pointer" 
-              onClick={() => toggleAxis(axisIndex)}
-            >
-              <h3 className="text-xl font-semibold text-blue-700">{axis.name}</h3>
-              <div className="text-xl font-semibold text-blue-700">
-                Score de l'axe : {axisAverageScore.toFixed(1)}
-              </div>
-              <span className="text-sm text-blue-500 ml-4">{openAxes[axisIndex] ? 'Réduire' : 'Dérouler'}</span>
-            </div>
-            {openAxes[axisIndex] && (
-              <div className="mt-4">
-                {axis.sections.map((section, sectionIndex) => (
-                  <Section
-                    key={sectionIndex}
-                    title={section.title}
-                    questions={section.questions}
-                    onSectionScoreChange={(scores) => handleSectionScoreChange(axisIndex, sectionIndex, scores)}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-        );
-      })}
+      {axes.map((axis, axisIndex) => (
+        <div key={axisIndex} className={`${activeTab === axisIndex ? 'block' : 'hidden'}`}>
+          {axis.sections.map((section, sectionIndex) => (
+            <Section
+              key={sectionIndex}
+              title={section.title}
+              questions={section.questions}
+              onSectionScoreChange={(scores) => handleSectionScoreChange(axisIndex, sectionIndex, scores)}
+            />
+          ))}
+        </div>
+      ))}
 
       <button
         onClick={generateJSON}
