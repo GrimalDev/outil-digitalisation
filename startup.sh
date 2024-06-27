@@ -10,4 +10,5 @@ fi
 chmod -R 777 database
 
 docker network create --subnet=172.32.0.0/16 db_network
+
 docker compose up -d --build
