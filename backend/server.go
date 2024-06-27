@@ -22,9 +22,10 @@ func main() {
 	e.Use(middleware.Recover())
 
 	initMongo()
+	seed()
 
 	// Routes
-	e.GET("/axes", getAxes)
+	e.GET("/axes", getCategoryNames)
 	// e.GET("/", func(c echo.Context) error {
 	// 	return c.String(http.StatusOK, "Hello, World!")
 	// })
