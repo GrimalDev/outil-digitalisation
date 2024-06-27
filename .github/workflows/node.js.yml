@@ -6,10 +6,10 @@ name: Node.js CI
 on:
   push:
     branches: 
-      - "*" # All branches
+      - "**" # All branches
   pull_request:
     branches: 
-      - "*" # All branches
+      - "**" # All branches
 
 jobs:
   build:
@@ -28,6 +28,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+        cache-dependency-path: frontend/package-lock.json # Point to the package-lock.json in the frontend folder
     - run: npm ci
       working-directory: ./frontend
     - run: npm run build --if-present
