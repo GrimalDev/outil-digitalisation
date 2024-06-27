@@ -1,31 +1,114 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Form from './components/Form';
-import questions from './res/questions.json';
 import CompanyForm from './components/SelectEntreprise';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ResultPage from './components/ResultPage';
+
+interface Choice {
+  text: string;
+  value: number;
+}
+
+interface Question {
+  statement: string;
+  possible_choices: Choice[];
+}
+
+interface Axis {
+  _id: string;
+  name: string;
+  description: string;
+  questions: Question[];
+}
+
+interface SectionProps {
+  title: string;
+  questions: Question[];
+}
+
+interface AxisProps {
+  name: string;
+  description: string;
+  sections: SectionProps[];
+}
 
 const App: React.FC = () => {
   const [companyName, setCompanyName] = useState<string | null>(null);
+  const [axes, setAxes] = useState<AxisProps[]>([]);
+  const [scores, setScores] = useState<number[][][]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   const handleCompanySubmit = (name: string) => {
     setCompanyName(name);
   };
 
+  const handleScoresSubmit = (scores: number[][][]) => {
+    setScores(scores);
+  };
+
+  useEffect(() => {
+    const fetchAxes = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/questionnaire');
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data: Axis[] = await response.json();
+        if (!Array.isArray(data)) {
+          throw new TypeError('Response is not an array');
+        }
+        
+        const transformedAxes = data.map(axis => ({
+          name: axis.name,
+          description: axis.description,
+          sections: [{
+            title: axis.name,
+            questions: axis.questions
+          }]
+        }));
+
+        setAxes(transformedAxes);
+      } catch (error: unknown) {
+        console.error('Error fetching axes:', error);
+        if (error instanceof Error) {
+          setError(error.message);
+        } else {
+          setError('An unknown error occurred');
+        }
+      }
+    };
+
+    fetchAxes();
+  }, []);
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  const axisNames = axes.map(axis => axis.name);
+
   return (
-    <div className="App">
-      <Header/>
-      {companyName ? (
-        <div className="bg-white min-h-screen flex flex-col items-center justify-center">
-          <div className="max-w-3xl w-full bg-white rounded-lg p-6">
-            <Form axes={questions.axes} companyName={companyName} />
-          </div>
-        </div>
-      ) : (
-        <CompanyForm onSubmit={handleCompanySubmit} />
-      )}
-      <Footer/> 
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              companyName ? (
+                <Form axes={axes} companyName={companyName} onScoresSubmit={handleScoresSubmit} />
+              ) : (
+                <CompanyForm onSubmit={handleCompanySubmit} />
+              )
+            }
+          />
+          <Route path="/results" element={<ResultPage companyName={companyName} scores={scores} axisNames={axisNames} />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 };
 
