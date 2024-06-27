@@ -12,6 +12,6 @@ rsync -ar --inplace ./outil-digitalisation/* root@172.16.0.55:~/app
 
 rm -rf ./outil-digitalisation
 
-ssh root@172.16.0.25 'cp /root/app && bash startup.sh'
-ssh root@172.16.0.55 'cp /root/app && bash startup.sh'
+ssh root@172.16.0.25 'cp app && bash startup.sh'
+ssh root@172.16.0.55 'cp app && bash startup.sh'
 
