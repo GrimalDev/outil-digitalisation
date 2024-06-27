@@ -46,8 +46,4 @@ services:
 networks:
   web_network:
   db_network:
-    driver: bridge
     external: true
-    ipam:
-      config:
-        - subnet: 172.32.0.0/16
