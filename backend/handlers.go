@@ -106,3 +106,20 @@ func saveCompany(c echo.Context) error {
 
 	return c.NoContent(http.StatusCreated)
 }
+
+func getCompany(c echo.Context) error {
+	// Get MongoDB collection
+	dbName := os.Getenv("MONGO_DBNAME")
+	collection := client.Database(dbName).Collection("company")
+	companyID := c.Param("id")
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	// Query to find the company by ID
+	var company Company
+	err := collection.FindOne(ctx, bson.D{{Key: "_id", Value: companyID}}).Decode(&company)
+	if err != nil {
+		log.Printf("Failed to find company: %v\n", err)
+		return c.String(http.StatusNotFound, "Company not found")
+	}
+	return c.JSON(http.StatusOK, company)
+}
