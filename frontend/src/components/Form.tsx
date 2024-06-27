@@ -1,14 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import Section from './Section';
-import Footer from './Footer';
+
+interface Choice {
+  text: string;
+  value: number;
+}
+
+interface Question {
+  statement: string;
+  possible_choices: Choice[];
+}
 
 interface SectionProps {
   title: string;
-  questions: string[];
+  questions: Question[];
 }
 
 interface AxisProps {
   name: string;
+  description: string;
   sections: SectionProps[];
 }
 
@@ -18,19 +28,22 @@ interface FormProps {
 }
 
 const Form: React.FC<FormProps> = ({ axes, companyName }) => {
-  const [axisScores, setAxisScores] = useState<number[][][]>(axes.map(axis => axis.sections.map(() => Array(0))));
+  const initialScores = axes.map(axis => axis.sections.map(() => Array<number>(0)));
+
+  const [axisScores, setAxisScores] = useState<number[][][]>(initialScores);
   const [activeTab, setActiveTab] = useState<number>(0);
   const [hasScores, setHasScores] = useState<boolean>(false);
 
-  const handleSectionScoreChange = (axisIndex: number, sectionIndex: number, scores: number[]) => {
-    const newAxisScores = [...axisScores];
-    newAxisScores[axisIndex][sectionIndex] = scores;
-    setAxisScores(newAxisScores);
+  const handleSectionScoreChange = useCallback((axisIndex: number, sectionIndex: number, scores: number[]) => {
+    setAxisScores(prevScores => {
+      const newAxisScores = [...prevScores];
+      newAxisScores[axisIndex][sectionIndex] = scores;
+      return newAxisScores;
+    });
 
-    // Check if there are any scores entered
-    const anyScoresEntered = newAxisScores.flat(2).some(score => score > 0);
+    const anyScoresEntered = scores.some(score => score > 0);
     setHasScores(anyScoresEntered);
-  };
+  }, []);
 
   const generateJSON = () => {
     const data = {
@@ -39,7 +52,7 @@ const Form: React.FC<FormProps> = ({ axes, companyName }) => {
         const sections = axis.sections.map((section, sectionIndex) => {
           const sectionScores = axisScores[axisIndex][sectionIndex] || [];
           const questions = section.questions.map((question, questionIndex) => ({
-            text: question,
+            text: question.statement,
             score: sectionScores[questionIndex] || 0,
           }));
           return {
