@@ -1,4 +1,3 @@
-// src/components/Question.tsx
 import React, { useState } from 'react';
 
 interface QuestionProps {

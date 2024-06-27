@@ -1,11 +1,10 @@
-// src/components/Section.tsx
 import React, { useState, useEffect } from 'react';
 import Question from './Question';
 
 interface SectionProps {
   title: string;
   questions: string[];
-  onSectionScoreChange: (score: number) => void;
+  onSectionScoreChange: (scores: number[]) => void;
 }
 
 const Section: React.FC<SectionProps> = ({ title, questions, onSectionScoreChange }) => {
@@ -21,8 +20,8 @@ const Section: React.FC<SectionProps> = ({ title, questions, onSectionScoreChang
   const averageScore = (totalScore / (scores.length * 2)) * 10;
 
   useEffect(() => {
-    onSectionScoreChange(totalScore);
-  }, [totalScore, onSectionScoreChange]);
+    onSectionScoreChange(scores);
+  }, [scores, onSectionScoreChange]);
 
   return (
     <div className="mb-8">
