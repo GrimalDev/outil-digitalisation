@@ -9,6 +9,14 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 )
 
+// Middleware to add Access-Control-Allow-Origin header
+func corsMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		c.Response().Header().Set("Access-Control-Allow-Origin", "*")
+		return next(c)
+	}
+}
+
 func main() {
 	err := godotenv.Load()
 	if err != nil {
@@ -20,6 +28,7 @@ func main() {
 	// Middleware
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
+	e.Use(corsMiddleware)
 
 	initMongo()
 	seed()
