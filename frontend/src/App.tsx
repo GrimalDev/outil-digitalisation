@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Form from './components/Form';
 import CompanyForm from './components/SelectEntreprise';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ResultPage from './components/ResultPage';
 
 interface Choice {
   text: string;
@@ -35,10 +37,15 @@ interface AxisProps {
 const App: React.FC = () => {
   const [companyName, setCompanyName] = useState<string | null>(null);
   const [axes, setAxes] = useState<AxisProps[]>([]);
+  const [scores, setScores] = useState<number[][][]>([]);
   const [error, setError] = useState<string | null>(null);
 
   const handleCompanySubmit = (name: string) => {
     setCompanyName(name);
+  };
+
+  const handleScoresSubmit = (scores: number[][][]) => {
+    setScores(scores);
   };
 
   useEffect(() => {
@@ -53,12 +60,11 @@ const App: React.FC = () => {
           throw new TypeError('Response is not an array');
         }
         
-        // Transform the data to fit the expected AxisProps type
         const transformedAxes = data.map(axis => ({
           name: axis.name,
           description: axis.description,
           sections: [{
-            title: axis.name, // Assuming each axis has one section titled with its name
+            title: axis.name,
             questions: axis.questions
           }]
         }));
@@ -81,29 +87,28 @@ const App: React.FC = () => {
     return <div>Error: {error}</div>;
   }
 
+  const axisNames = axes.map(axis => axis.name);
+
   return (
-    <div className="App">
-      <Header />
-      {companyName ? (
-        <div className="bg-white min-h-screen flex flex-col items-center justify-center">
-          <div className="max-w-3xl w-full bg-white rounded-lg p-6">
-            <h2 className="text-3xl font-bold mb-6 text-center text-gray-800 border-b-4 border-blue-600 pb-2">
-              Évaluation pour {companyName}
-            </h2>
-            {axes.map((axis) => (
-              <div key={axis.name} className="mb-6">
-                <h3 className="text-xl font-semibold text-gray-700">{axis.name}</h3>
-                <p className="text-gray-600">{axis.description}</p>
-              </div>
-            ))}
-            <Form axes={axes} companyName={companyName} />
-          </div>
-        </div>
-      ) : (
-        <CompanyForm onSubmit={handleCompanySubmit} />
-      )}
-      <Footer />
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              companyName ? (
+                <Form axes={axes} companyName={companyName} onScoresSubmit={handleScoresSubmit} />
+              ) : (
+                <CompanyForm onSubmit={handleCompanySubmit} />
+              )
+            }
+          />
+          <Route path="/results" element={<ResultPage companyName={companyName} scores={scores} axisNames={axisNames} />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 };
 
