@@ -32,7 +32,6 @@ type QuestionInfo struct {
 // Category represents the structure of a category.
 type Category struct {
 	ID          string     `json:"_id" bson:"_id"`
-	Axis        string     `json:"axis" bson:"axis"`
 	Name        string     `json:"name" bson:"name"`
 	Description string     `json:"description" bson:"description"`
 	Questions   []Question `json:"questions" bson:"questions"`
@@ -40,13 +39,12 @@ type Category struct {
 
 // Question represents the structure of a question.
 type Question struct {
-	QuestionID string   `json:"question_id" bson:"question_id"`
-	Text       string   `json:"text" bson:"text"`
-	Choices    []Choice `json:"choices" bson:"choices"`
+	Statement string   `json:"statement" bson:"statement"`
+	Choices   []Choice `json:"possible_choices" bson:"possible_choices"`
 }
 
 // Choice represents the possible choices for a question.
 type Choice struct {
-	Name  string `json:"name" bson:"name"`
-	Score int    `json:"score" bson:"score"`
+	Text  string `json:"text" bson:"text"`
+	Value int    `json:"value" bson:"values"`
 }

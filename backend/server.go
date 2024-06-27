@@ -25,7 +25,7 @@ func main() {
 	seed()
 
 	// Routes
-	e.GET("/axes", getCategoryNames)
+	e.GET("/questionnaire", getCategoryNames)
 	// e.GET("/", func(c echo.Context) error {
 	// 	return c.String(http.StatusOK, "Hello, World!")
 	// })
