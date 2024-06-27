@@ -1,5 +1,5 @@
-import React, { useState, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useCallback, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import Section from './Section';
 
 interface Choice {
@@ -37,10 +37,19 @@ const Form: React.FC<FormProps> = ({ axes, companyName, onScoresSubmit }) => {
   const [hasScores, setHasScores] = useState<boolean>(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (axes.length > 0) {
+      setAxisScores(initialScores);
+    }
+  }, [axes]);
+
   const handleSectionScoreChange = useCallback((axisIndex: number, sectionIndex: number, scores: number[]) => {
     setAxisScores(prevScores => {
-      const newAxisScores = [...prevScores];
-      newAxisScores[axisIndex][sectionIndex] = scores;
+      const newAxisScores = prevScores.map((axis, i) => 
+        i === axisIndex ? axis.map((section, j) => 
+          j === sectionIndex ? scores : section
+        ) : axis
+      );
       return newAxisScores;
     });
 
@@ -55,7 +64,7 @@ const Form: React.FC<FormProps> = ({ axes, companyName, onScoresSubmit }) => {
 
   const generateJSON = () => {
     const data = axes.map((axis, axisIndex) => ({
-      _id: 0, // Assurez-vous que chaque `axis` a un champ `_id`
+      _id: 0, // Assurez-vous que chaque axis a un champ _id
       name: axis.name,
       description: axis.description,
       questions: axis.sections.flatMap((section, sectionIndex) =>
@@ -79,7 +88,10 @@ const Form: React.FC<FormProps> = ({ axes, companyName, onScoresSubmit }) => {
     link.click();
     document.body.removeChild(link);
   };
-  
+
+  if (axes.length === 0) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="p-8 bg-gray-50 rounded-lg shadow-md">
