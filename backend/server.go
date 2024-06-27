@@ -35,6 +35,9 @@ func main() {
 
 	// Routes
 	e.GET("/questionnaire", getCategoryNames)
+	e.POST("/questionnaire", saveCompany)
+	e.GET("/entreprises", getAllCompany)
+
 	// e.GET("/", func(c echo.Context) error {
 	// 	return c.String(http.StatusOK, "Hello, World!")
 	// })

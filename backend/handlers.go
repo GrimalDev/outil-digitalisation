@@ -48,3 +48,61 @@ func getCategoryNames(c echo.Context) error {
 	// Return JSON response
 	return c.JSON(http.StatusOK, categories)
 }
+
+func getAllCompany(c echo.Context) error {
+	// Get MongoDB collection
+	dbName := os.Getenv("MONGO_DBNAME")
+	collection := client.Database(dbName).Collection("company")
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	// Query to get all companies
+	cursor, err := collection.Find(ctx, bson.D{})
+	if err != nil {
+		log.Printf("Failed to find companies: %v\n", err)
+		return c.String(http.StatusInternalServerError, "Failed to fetch companies")
+	}
+	defer cursor.Close(ctx)
+	var companies []Company
+	// Iterate through the cursor and decode documents
+	for cursor.Next(ctx) {
+		var company Company
+		if err := cursor.Decode(&company); err != nil {
+			log.Printf("Failed to decode company: %v\n", err)
+			continue
+		}
+		companies = append(companies, company)
+	}
+	// Check for cursor errors
+	if err := cursor.Err(); err != nil {
+		log.Printf("Cursor error: %v\n", err)
+		return c.String(http.StatusInternalServerError, "Failed to iterate companies")
+	}
+	// Return JSON response
+	return c.JSON(http.StatusOK, companies)
+}
+
+func saveCompany(c echo.Context) error {
+	// Get MongoDB collection
+	dbName := os.Getenv("MONGO_DBNAME")
+	collection := client.Database(dbName).Collection("company")
+
+	var company Company
+
+	// Bind the request body to the company struct
+	if err := c.Bind(&company); err != nil {
+		log.Printf("Failed to bind company data: %v\n", err)
+		return c.String(http.StatusBadRequest, "Invalid company data")
+	}
+
+	// Insert the company into the MongoDB collection
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	_, err := collection.InsertOne(ctx, company)
+	if err != nil {
+		log.Printf("Failed to insert company: %v\n", err)
+		return c.String(http.StatusInternalServerError, "Failed to save company")
+	}
+
+	return c.NoContent(http.StatusCreated)
+}
