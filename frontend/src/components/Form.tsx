@@ -1,61 +1,74 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Section from './Section';
-import Footer from './Footer';
+
+interface Choice {
+  text: string;
+  value: number;
+}
+
+interface Question {
+  statement: string;
+  possible_choices: Choice[];
+}
 
 interface SectionProps {
   title: string;
-  questions: string[];
+  questions: Question[];
 }
 
 interface AxisProps {
   name: string;
+  description: string;
   sections: SectionProps[];
 }
 
 interface FormProps {
   axes: AxisProps[];
   companyName: string;
+  onScoresSubmit: (scores: number[][][]) => void;
 }
 
-const Form: React.FC<FormProps> = ({ axes, companyName }) => {
-  const [axisScores, setAxisScores] = useState<number[][][]>(axes.map(axis => axis.sections.map(() => Array(0))));
+const Form: React.FC<FormProps> = ({ axes, companyName, onScoresSubmit }) => {
+  const initialScores = axes.map(axis => axis.sections.map(() => Array<number>(0)));
+
+  const [axisScores, setAxisScores] = useState<number[][][]>(initialScores);
   const [activeTab, setActiveTab] = useState<number>(0);
   const [hasScores, setHasScores] = useState<boolean>(false);
+  const navigate = useNavigate();
 
-  const handleSectionScoreChange = (axisIndex: number, sectionIndex: number, scores: number[]) => {
-    const newAxisScores = [...axisScores];
-    newAxisScores[axisIndex][sectionIndex] = scores;
-    setAxisScores(newAxisScores);
+  const handleSectionScoreChange = useCallback((axisIndex: number, sectionIndex: number, scores: number[]) => {
+    setAxisScores(prevScores => {
+      const newAxisScores = [...prevScores];
+      newAxisScores[axisIndex][sectionIndex] = scores;
+      return newAxisScores;
+    });
 
-    // Check if there are any scores entered
-    const anyScoresEntered = newAxisScores.flat(2).some(score => score > 0);
+    const anyScoresEntered = scores.some((score: number) => score > 0);
     setHasScores(anyScoresEntered);
+  }, []);
+
+  const handleSubmit = () => {
+    onScoresSubmit(axisScores);
+    navigate('/results');
   };
 
   const generateJSON = () => {
-    const data = {
-      companyName: companyName,
-      axes: axes.map((axis, axisIndex) => {
-        const sections = axis.sections.map((section, sectionIndex) => {
-          const sectionScores = axisScores[axisIndex][sectionIndex] || [];
-          const questions = section.questions.map((question, questionIndex) => ({
-            text: question,
-            score: sectionScores[questionIndex] || 0,
-          }));
-          return {
-            title: section.title,
-            questions: questions,
-            sectionTotalScore: sectionScores.reduce((total, score) => total + score, 0),
-          };
-        });
-        return {
-          name: axis.name,
-          sections: sections,
-          axisTotalScore: sections.reduce((total, section) => total + section.sectionTotalScore, 0),
-        };
-      }),
-    };
-
+    const data = axes.map((axis, axisIndex) => ({
+      _id: 0, // Assurez-vous que chaque `axis` a un champ `_id`
+      name: axis.name,
+      description: axis.description,
+      questions: axis.sections.flatMap((section, sectionIndex) =>
+        section.questions.map((question, questionIndex) => ({
+          statement: question.statement,
+          possible_choices: question.possible_choices.map((choice, choiceIndex) => ({
+            text: choice.text,
+            value: axisScores[axisIndex][sectionIndex][questionIndex] === choiceIndex ? 1 : 0
+          }))
+        }))
+      )
+    }));
+  
     const json = JSON.stringify(data, null, 2);
     const blob = new Blob([json], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
@@ -66,6 +79,7 @@ const Form: React.FC<FormProps> = ({ axes, companyName }) => {
     link.click();
     document.body.removeChild(link);
   };
+  
 
   return (
     <div className="p-8 bg-gray-50 rounded-lg shadow-md">
@@ -99,9 +113,16 @@ const Form: React.FC<FormProps> = ({ axes, companyName }) => {
       ))}
 
       <button
-        onClick={generateJSON}
+        onClick={handleSubmit}
         className={`bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4 ${!hasScores ? 'opacity-50 cursor-not-allowed' : ''}`}
         disabled={!hasScores}
+      >
+        Voir les résultats
+      </button>
+
+      <button
+        onClick={generateJSON}
+        className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4`}
       >
         Télécharger JSON
       </button>

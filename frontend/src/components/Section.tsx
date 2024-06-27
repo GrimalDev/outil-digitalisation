@@ -1,20 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Question from './Question';
+
+interface Choice {
+  text: string;
+  value: number;
+}
+
+interface Question {
+  statement: string;
+  possible_choices: Choice[];
+}
 
 interface SectionProps {
   title: string;
-  questions: string[];
+  questions: Question[];
   onSectionScoreChange: (scores: number[]) => void;
 }
 
 const Section: React.FC<SectionProps> = ({ title, questions, onSectionScoreChange }) => {
   const [scores, setScores] = useState<number[]>(Array(questions.length).fill(0));
 
-  const handleScoreChange = (index: number, score: number) => {
-    const newScores = [...scores];
-    newScores[index] = score;
-    setScores(newScores);
-  };
+  const handleScoreChange = useCallback((index: number, score: number) => {
+    setScores(prevScores => {
+      const newScores = [...prevScores];
+      newScores[index] = score;
+      return newScores;
+    });
+  }, []);
 
   const totalScore = scores.reduce((total, score) => total + score, 0);
   const averageScore = (totalScore / (scores.length * 2)) * 10;
@@ -33,7 +45,8 @@ const Section: React.FC<SectionProps> = ({ title, questions, onSectionScoreChang
       {questions.map((question, index) => (
         <Question
           key={index}
-          text={question}
+          text={question.statement}
+          choices={question.possible_choices}
           onScoreChange={(score) => handleScoreChange(index, score)}
         />
       ))}
