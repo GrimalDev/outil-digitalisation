@@ -1,0 +1,701 @@
+[
+  {
+    "name": "Compétence",
+    "description": "il est recommandé de proposer des formations et coachings techniques, de consacrer du temps à la veille et à l apprentissage, d inciter à la mise à jour des compétences des équipes internes et externes, de créer des communautés de pratiques et des guildes, de mettre en place un mentorat interne, de réaliser des revues d amélioration continue, et d organiser des hackathons ou événements.",
+    "questions": [
+      {
+        "statement": "Formations pour Apprendre à apprendre, changement de paradigme, être à la page (au-delà des compétences justes nécessaires)",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Désintérêt pour l amélioration de la compétence des équipes"
+          },
+          {
+            "value": 1,
+            "text": "Nombreuses formations métiers dans le plan de formation"
+          },
+          {
+            "value": 2,
+            "text": "Possibilité de choisir et de suivre des formations annexes au métier et/ou temps dédié pour de la veille ou de l auto-formation "
+          }
+        ]
+      },
+      {
+        "statement": "Le co-développement (outil d intelligence collective) existe-t-il dans l entreprise ?",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Pas du tout"
+          },
+          {
+            "value": 1,
+            "text": "Quelques initiatives"
+          },
+          {
+            "value": 2,
+            "text": "Démarche instaurée et pratiquée régulièrement"
+          }
+        ]
+      },
+      {
+        "statement": "Les collaborateurs sont-ils amenés à partager leurs compétences et sous quelles formes ?",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Aucune initiative"
+          },
+          {
+            "value": 1,
+            "text": "Capitalisation d un certain nombre de savoirs"
+          },
+          {
+            "value": 2,
+            "text": "Véritable communauté de pratiques mise en place"
+          }
+        ]
+      },
+      {
+        "statement": "Le mentoring (fonctionnement en binôme) existe-t-il pour assurer le transfert de compétences ?",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Aucune initiative"
+          },
+          {
+            "value": 1,
+            "text": "Quelques initiatives"
+          },
+          {
+            "value": 2,
+            "text": "Systématiquement lors d une prise de poste"
+          }
+        ]
+      },
+      {
+        "statement": "Les managers sont-ils aussi formateurs sur certains sujet pour l entreprise entière ?",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Non"
+          },
+          {
+            "value": 1,
+            "text": "Quelques fois"
+          },
+          {
+            "value": 2,
+            "text": "Quasi systématiquement"
+          }
+        ]
+      },
+      {
+        "statement": "L entreprise favorise-t-elle l excellence technique ? (Principe 9 du Manifeste Agile)",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Pas du tout"
+          },
+          {
+            "value": 1,
+            "text": "Oui un peu"
+          },
+          {
+            "value": 2,
+            "text": "Oui"
+          }
+        ]
+      },
+      {
+        "statement": "Déployez vous les pratiques du Faire Agile, c est-à-dire une ou plusieurs des méthodes agiles ?",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "NON, nous les projets sont tous en cycle en V / cascade"
+          },
+          {
+            "value": 1,
+            "text": "Quelques projets pilotes"
+          },
+          {
+            "value": 2,
+            "text": "Déploiement systématique d une ou plusieurs méthodes"
+          }
+        ]
+      },
+      {
+        "statement": "Votre entreprise promeut-elle un état d esprit agile ?",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Non"
+          },
+          {
+            "value": 1,
+            "text": "Quelques valeurs agiles promues"
+          },
+          {
+            "value": 2,
+            "text": "Oui"
+          }
+        ]
+      },
+      {
+        "statement": "Votre entreprise gère-t-elle humainement les compétences ?",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Non"
+          },
+          {
+            "value": 1,
+            "text": "Un peu"
+          },
+          {
+            "value": 2,
+            "text": "Oui"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Réactivité",
+    "description": "Pour améliorer la vélocité des équipes, proposez des MVP, traitez les aléas, mesurez la vélocité et formez les équipes aux outils de gestion du temps dans un monde VUCA.",
+    "questions": [
+      {
+        "statement": "Valeur supérieure utilisable livrée plus tôt (Fonction principale utilisable dès les premières versions)",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Pas de phase de validation intermédiaire"
+          },
+          {
+            "value": 1,
+            "text": "Prototype fonctionnel intermédiaire livré au client"
+          },
+          {
+            "value": 2,
+            "text": "Principe du MVP respecté : Minimum Viable Product / la version d un produit qui permet d obtenir un maximum de retours client avec un minimum d effort"
+          }
+        ]
+      },
+      {
+        "statement": "Réactivité face aux impératifs prépondérants",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Pas de modification possible en cours de conception"
+          },
+          {
+            "value": 1,
+            "text": "Modifications en cours de conception engendrant alors du retard"
+          },
+          {
+            "value": 2,
+            "text": "L équipe de conception s adapte en cas de modification en cours de conception"
+          }
+        ]
+      },
+      {
+        "statement": "Mesure de la vélocité de l équipe (indicateur de suivi du travail d une équipe de conception)",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Jamais"
+          },
+          {
+            "value": 1,
+            "text": "Suivi des tâches"
+          },
+          {
+            "value": 2,
+            "text": "Mesure de la vélocité"
+          }
+        ]
+      },
+      {
+        "statement": "Les installations techniques et de gestion sont modernes (TIC/ERP/CRM)",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Le système d information freine toute tentative de réagir rapidement"
+          },
+          {
+            "value": 1,
+            "text": "Le système d information permet avec quelques difficultés d avoir de la réactivité"
+          },
+          {
+            "value": 2,
+            "text": "En cas de besoin, le système d information favorise la réactivité"
+          }
+        ]
+      },
+      {
+        "statement": "Les équipes sont en capacité d autonomiser une partie de leurs tâches",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Jamais"
+          },
+          {
+            "value": 1,
+            "text": "On laisse la possibilité de créer quelques macros Excel/VBA"
+          },
+          {
+            "value": 2,
+            "text": "L entreprise équipe et forme ses équipes à la création de site web ou app via des outils no-code"
+          }
+        ]
+      },
+      {
+        "statement": "Les équipes s inscrivent dans un cadre Agile Lean",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Pas de démarche Agile/Lean initiée dans l entreprise"
+          },
+          {
+            "value": 1,
+            "text": "Plusieurs concepts Agile/Lean sont mis en œuvre dans l entreprise"
+          },
+          {
+            "value": 2,
+            "text": "Les concepts Agile/Lean sont inscrits dans l ADN de l entreprise : Satisfaction du client avec des livraisons au plu tôt et régulières, accepter les changements, lisser les activités, collaboration quotidienne avec les parties prenantes, proximité terrain, autonomie des équipes dans la résolution de problèmes, amélioration continue..."
+          }
+        ]
+      },
+      {
+        "statement": "Les mécanismes de livraison et de synchronisation sont matures",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Aucun mécanisme formalisé de livraison ou de synchronisation"
+          },
+          {
+            "value": 1,
+            "text": "Quelques mécanismes informels de livraison ou de synchronisation"
+          },
+          {
+            "value": 2,
+            "text": "Mécanismes de livraison et de synchronisation formalisés et régulièrement améliorés"
+          }
+        ]
+      },
+      {
+        "statement": "Les innovations produit tiennent compte de l urgence climatique",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Aucune prise en compte de l urgence climatique dans les innovations"
+          },
+          {
+            "value": 1,
+            "text": "Quelques innovations prennent en compte l urgence climatique"
+          },
+          {
+            "value": 2,
+            "text": "La majorité des innovations produits tiennent compte de l urgence climatique"
+          }
+        ]
+      },
+      {
+        "statement": "Les processus internes sont remis en cause pour diminuer leur impact environnemental",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Aucune remise en cause des processus internes pour diminuer l impact environnemental"
+          },
+          {
+            "value": 1,
+            "text": "Quelques processus internes sont remis en cause pour diminuer leur impact environnemental"
+          },
+          {
+            "value": 2,
+            "text": "La majorité des processus internes sont remis en cause pour diminuer leur impact environnemental"
+          }
+        ]
+      },
+      {
+        "statement": "Les parties prenantes sont sélectionnées en fonction de leur éthique vis-à-vis du développement durable",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Aucune sélection des parties prenantes basée sur leur éthique vis-à-vis du développement durable"
+          },
+          {
+            "value": 1,
+            "text": "Quelques parties prenantes sont sélectionnées en fonction de leur éthique vis-à-vis du développement durable"
+          },
+          {
+            "value": 2,
+            "text": "La majorité des parties prenantes sont sélectionnées en fonction de leur éthique vis-à-vis du développement durable"
+          }
+        ]
+      },
+      {
+        "statement": "Veille stratégique",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Aucune veille stratégique réalisée"
+          },
+          {
+            "value": 1,
+            "text": "Veille stratégique ponctuelle"
+          },
+          {
+            "value": 2,
+            "text": "Veille stratégique systématique et proactive"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Numérique",
+    "description": "Pour améliorer le modèle économique, explorez de nouvelles sources de revenus, optimisez les coûts et diversifiez vos offres.",
+    "questions": [
+      {
+        "statement": "Votre entreprise dégage-t-elle une part de CA par des produits ou services en ligne ?",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Aucune part du CA provient de produits ou services en ligne"
+          },
+          {
+            "value": 1,
+            "text": "Quelques produits ou services en ligne contribuent au CA, mais de manière limitée"
+          },
+          {
+            "value": 2,
+            "text": "Une part significative du CA provient de produits ou services en ligne, démontrant une forte intégration numérique dans le modèle économique de l'entreprise"
+          }
+        ]
+      },
+      {
+        "statement": "La mise en place d'outils numériques a-t-elle permis d'optimiser les coûts, les délais et la qualité ?",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Peu ou pas d'optimisation constatée dans les coûts, les délais ou la qualité"
+          },
+          {
+            "value": 1,
+            "text": "Quelques gains d'optimisation observés, mais des défis persistent dans certains domaines"
+          },
+          {
+            "value": 2,
+            "text": "Les outils numériques ont largement contribué à optimiser les coûts, les délais et la qualité, avec des résultats tangibles et mesurables"
+          }
+        ]
+      },
+      {
+        "statement": "Comment les outils sont-ils intégrés dans les process de l'entreprise ?",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Intégration minimale ou incohérente des outils numériques dans les process de l'entreprise"
+          },
+          {
+            "value": 1,
+            "text": "Certains processus intègrent des outils numériques, mais des lacunes subsistent dans l'harmonisation et la pleine intégration"
+          },
+          {
+            "value": 2,
+            "text": "Les outils numériques sont pleinement intégrés dans tous les processus de l'entreprise, facilitant une collaboration efficace et une gestion optimisée des activités"
+          }
+        ]
+      },
+      {
+        "statement": "Comment partagez-vous les données numériques avec les parties prenantes (clients, fournisseurs,…) ?",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Partage limité et non structuré des données numériques avec les parties prenantes"
+          },
+          {
+            "value": 1,
+            "text": "Quelques initiatives de partage de données numériques en place, mais des opportunités d'amélioration existent"
+          },
+          {
+            "value": 2,
+            "text": "Partage structuré et efficace des données numériques avec toutes les parties prenantes, soutenant une collaboration transparente et mutuellement bénéfique"
+          }
+        ]
+      },
+      {
+        "statement": "Mesurez-vous les impacts du numérique sur votre entreprise ?",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Peu ou pas de mesure des impacts du numérique sur l'entreprise"
+          },
+          {
+            "value": 1,
+            "text": "Quelques tentatives de mesure des impacts numériques, mais des méthodologies non encore optimisées"
+          },
+          {
+            "value": 2,
+            "text": "Mesure systématique et approfondie des impacts du numérique sur l'entreprise, avec une utilisation active des résultats pour orienter les stratégies futures"
+          }
+        ]
+      },
+      {
+        "statement": "Quel est l'impact du numérique sur la démarche RSE de l'entreprise ?",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Impact limité du numérique sur la démarche RSE de l'entreprise"
+          },
+          {
+            "value": 1,
+            "text": "Quelques initiatives RSE influencées par le numérique, mais des opportunités d'expansion existent"
+          },
+          {
+            "value": 2,
+            "text": "Le numérique a profondément renforcé la démarche RSE de l'entreprise, intégrant des pratiques durables et responsables dans toutes les activités numériques"
+          }
+        ]
+      },
+      {
+        "statement": "Existe-t-il des freins (stratégiques, financiers,…) à l'investissement dans les outils numériques ?",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Freins importants à l'investissement dans les outils numériques, avec des résistances stratégiques et financières significatives"
+          },
+          {
+            "value": 1,
+            "text": "Quelques freins identifiés, mais des initiatives en cours pour les surmonter"
+          },
+          {
+            "value": 2,
+            "text": "Investissement facilité dans les outils numériques, avec des stratégies claires pour surmonter les freins potentiels et maximiser les bénéfices"
+          }
+        ]
+      },
+      {
+        "statement": "L'entreprise dispose-t-elle : d'un site internet, d'un compte LinkedIn, d'une page Facebook, d'un compte Twitter,... ?",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Absence ou présence minimale sur les plateformes numériques"
+          },
+          {
+            "value": 1,
+            "text": "Présence limitée sur quelques plateformes numériques, mais absence sur d'autres importantes"
+          },
+          {
+            "value": 2,
+            "text": "Présence active et bien établie sur toutes les principales plateformes numériques, soutenant une visibilité et une engagement efficaces"
+          }
+        ]
+      },
+      {
+        "statement": "Comment utilisez-vous le numérique dans la relation client ? (nouveau modèle de vente, nouveau modèle d'échanges avec les clients, communauté, story, chat,...)",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Utilisation limitée et non optimisée du numérique dans la relation client"
+          },
+          {
+            "value": 1,
+            "text": "Quelques initiatives numériques dans la relation client, mais des possibilités d'amélioration existent"
+          },
+          {
+            "value": 2,
+            "text": "Utilisation avancée et innovante du numérique pour enrichir la relation client, adoptant de nouveaux modèles de vente et d'interaction pour stimuler l'engagement et la fidélité"
+          }
+        ]
+      },
+      {
+        "statement": "L'entreprise dispose-t-elle d'un community manager ?",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Absence de community manager dédié ou de gestion stratégique des communautés en ligne"
+          },
+          {
+            "value": 1,
+            "text": "Présence limitée ou occasionnelle d'un community manager, avec des efforts sporadiques dans la gestion des communautés"
+          },
+          {
+            "value": 2,
+            "text": "Community manager dédié et stratégie établie pour la gestion proactive et efficace des communautés en ligne, renforçant l'engagement et la réputation de l'entreprise"
+          }
+        ]
+      },
+      {
+        "statement": "Certains de vos collaborateurs sont-ils actifs sur les réseaux sociaux au nom de l'entreprise ?",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Aucun ou très peu de collaborateurs actifs sur les réseaux sociaux au nom de l'entreprise"
+          },
+          {
+            "value": 1,
+            "text": "Quelques collaborateurs actifs sur les réseaux sociaux au nom de l'entreprise, mais sans stratégie ou coordination globale"
+          },
+          {
+            "value": 2,
+            "text": "Collaborateurs activement engagés sur les réseaux sociaux au nom de l'entreprise, avec une stratégie claire pour amplifier la présence et la voix de l'entreprise"
+          }
+        ]
+      },
+      {
+        "statement": "Comment mesurez-vous et exploitez-vous les données issues du site de votre entreprise ?",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Peu ou pas de mesure ou d'exploitation des données du site de l'entreprise"
+          },
+          {
+            "value": 1,
+            "text": "Quelques tentatives de mesure et d'exploitation des données du site, mais avec des capacités limitées"
+          },
+          {
+            "value": 2,
+            "text": "Mesure avancée et exploitation proactive des données du site de l'entreprise, utilisant des analyses approfondies pour optimiser la performance numérique et les"
+          }
+        ]
+      },
+
+      {
+        "statement": "Avez-vous observé chez vos concurrents des pratiques innovantes ?",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Peu ou pas d'observation de pratiques innovantes chez les concurrents"
+          },
+          {
+            "value": 1,
+            "text": "Quelques observations de pratiques innovantes chez les concurrents, mais sans impact majeur sur les stratégies internes"
+          },
+          {
+            "value": 2,
+            "text": "Observation active de pratiques innovantes chez les concurrents, avec une intégration stratégique des leçons apprises dans les processus internes"
+          }
+        ]
+      },
+      {
+        "statement": "Vos collaborateurs sont-ils équipés de nouveaux équipements numériques de travail (PC portable, tablette, smartphone,…) ?",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Équipement limité ou non standardisé en nouveaux équipements numériques de travail"
+          },
+          {
+            "value": 1,
+            "text": "Certains collaborateurs équipés de nouveaux équipements numériques, mais des lacunes subsistent dans la couverture et l'accessibilité"
+          },
+          {
+            "value": 2,
+            "text": "Large adoption de nouveaux équipements numériques par les collaborateurs, soutenant une flexibilité et une efficacité accrues dans les opérations quotidiennes"
+          }
+        ]
+      },
+      {
+        "statement": "L'arrivée des outils digitaux a-t-elle eu un impact sur les pratiques et la culture de l'entreprise ?",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Impact limité sur les pratiques et la culture de l'entreprise suite à l'arrivée des outils digitaux"
+          },
+          {
+            "value": 1,
+            "text": "Quelques changements observés dans les pratiques et la culture de l'entreprise, mais avec des défis dans l'adoption généralisée"
+          },
+          {
+            "value": 2,
+            "text": "Transformation significative des pratiques et de la culture de l'entreprise grâce à l'adoption des outils digitaux, favorisant une approche plus agile, collaborative et orientée vers l'innovation"
+          }
+        ]
+      },
+      {
+        "statement": "Comment vous êtes-vous approprié et comment avez-vous accompagné ces évolutions ?",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Appropriation limitée des évolutions numériques, avec un accompagnement insuffisant des transformations internes"
+          },
+          {
+            "value": 1,
+            "text": "Quelques efforts d'appropriation des évolutions numériques, mais des besoins d'accompagnement plus ciblés et soutenus"
+          },
+          {
+            "value": 2,
+            "text": "Appropriation proactive et stratégique des évolutions numériques, avec un accompagnement efficace des collaborateurs pour maximiser les bénéfices des nouvelles technologies"
+          }
+        ]
+      },
+      {
+        "statement": "Les nouvelles possibilités technologiques ont-elles fait évoluer le modèle d'organisation de l'entreprise et/ou votre management, vers plus de collaboration avec des acteurs internes ou externes ?",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Peu ou pas d'évolution du modèle d'organisation ou du management suite aux nouvelles possibilités technologiques"
+          },
+          {
+            "value": 1,
+            "text": "Quelques ajustements observés dans le modèle d'organisation ou le management, mais sans transformation majeure"
+          },
+          {
+            "value": 2,
+            "text": "Transformation significative du modèle d'organisation et/ou du management, favorisant une collaboration accrue avec les acteurs internes et externes grâce aux nouvelles possibilités technologiques"
+          }
+        ]
+      },
+      {
+        "statement": "Mobilisez-vous des outils de veille et mettez-vous en œuvre des modalités de curation et de partage de l'information ?",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Utilisation limitée ou sporadique d'outils de veille et de curation de l'information"
+          },
+          {
+            "value": 1,
+            "text": "Quelques initiatives de veille et de curation de l'information, mais sans systématisation"
+          },
+          {
+            "value": 2,
+            "text": "Utilisation active et systématique d'outils de veille et de curation de l'information, facilitant une gestion proactive des connaissances et une prise de décision éclairée"
+          }
+        ]
+      },
+      {
+        "statement": "Les fonctionnalités des outils sont-elles augmentées par la pratique de vos collaborateurs ?",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Fonctionnalités des outils peu exploitées ou optimisées par les collaborateurs"
+          },
+          {
+            "value": 1,
+            "text": "Quelques utilisations avancées des fonctionnalités des outils par les collaborateurs, mais des opportunités d'amélioration existent"
+          },
+          {
+            "value": 2,
+            "text": "Utilisation étendue et innovante des fonctionnalités des outils par les collaborateurs, maximisant les capacités des technologies disponibles pour améliorer la productivité et l'innovation"
+          }
+        ]
+      },
+      {
+        "statement": "Comment accompagnez-vous vos collaborateurs dans la transition numérique ?",
+        "possible_choices": [
+          {
+            "value": 0,
+            "text": "Accompagnement limité et non structuré des collaborateurs dans la transition numérique"
+          },
+          {
+            "value": 1,
+            "text": "Quelques initiatives d'accompagnement des collaborateurs dans la transition numérique, mais des besoins spécifiques non encore adressés"
+          },
+          {
+            "value": 2,
+            "text": "Accompagnement complet et personnalisé des collaborateurs dans la transition numérique, avec des programmes de formation et de soutien adaptés aux besoins individuels et organisationnels"
+          }
+        ]
+      }
+    ]
+  }
+]
