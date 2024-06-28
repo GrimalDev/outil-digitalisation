@@ -42,10 +42,8 @@ services:
       - ./database:/data/db
     networks:
       db_network:
-        ipv4_address: 172.21.0.2
+        ipv4_address: 172.32.0.2
 networks:
   web_network:
   db_network:
-    ipam:
-      config:
-        - subnet: 172.21.0.0/16
+    external: true
