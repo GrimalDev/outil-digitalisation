@@ -86,43 +86,17 @@ const App: React.FC = () => {
         } else {
           setError('An unknown error occurred');
         }
-      };
-
-      if (!axes.length) {
-        fetchAxes();
       }
-    }, [axes.length]);
+    };
 
     if (!axes.length) {
       fetchAxes();
     }
   }, [axes.length]);
 
-    const axisNames = axes.map(axis => axis.name);
-
-    return (
-      <Router>
-        <div className="App">
-          <Header />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                companyName ? (
-                  <Form axes={axes} companyName={companyName} onScoresSubmit={handleScoresSubmit} />
-                ) : (
-                  <CompanyForm onSubmit={handleCompanySubmit} />
-                )
-              }
-            />
-            <Route path="/form/:companyName" element={<Form axes={axes} companyName={companyName || ''} onScoresSubmit={handleScoresSubmit} />} />
-            <Route path="/results" element={<ResultPage companyName={companyName} scores={scores} axisNames={axisNames} />} />
-          </Routes>
-          <Footer />
-        </div>
-      </Router>
-    );
-  };
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   const axisNames = axes.map(axis => axis.name);
 
